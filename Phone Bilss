@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class PhoneBill {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int totalMessages = Integer.parseInt(scanner.nextLine());
+        int totalMinutes = Integer.parseInt(scanner.nextLine());
+
+        int phonePlan = 12;
+        double taxPerExtraMinute = 0.10;
+        double taxPerExtraMessage = 0.06;
+
+        int extraMessages = 0;
+        int extraMinutes = 0;
+
+        if (totalMinutes > 60) {
+            extraMinutes = totalMinutes - 60;
+        }
+
+        if (totalMessages >20) {
+            extraMessages = totalMessages - 20;
+        }
+
+        double sumExtraMinutes = extraMinutes*0.10;
+        double sumExtraMessages = extraMessages*0.06;
+
+        double sumAdditions = (sumExtraMinutes + sumExtraMessages);
+        double taxes = sumAdditions*0.2;
+
+        double totalBill = phonePlan + sumAdditions + taxes;
+
+
+            System.out.printf("%d additional messages for %.2f levas%n", extraMessages, sumExtraMessages);
+            System.out.printf("%d additional minutes for %.2f levas%n", extraMinutes, sumExtraMinutes);
+            System.out.printf("%.2f additional taxes%n", taxes);
+            System.out.printf("%.2f", totalBill);
+
+
+    }
+}
