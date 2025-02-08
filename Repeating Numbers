@@ -1,0 +1,52 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class RepeatingNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int numberCount = Integer.parseInt(scanner.nextLine());
+
+        int[] arr = new int[numberCount];
+
+        for (int i = 0; i < numberCount; i++) {
+            arr[i] = Integer.parseInt(scanner.nextLine());
+            if (numberCount < 2) {
+                System.out.println(arr[i]);
+                return;
+            }
+        }
+
+        Arrays.sort(arr);
+
+        int targetNumber = 0;
+        int maxCount = 0;
+        int position = 0;
+        int min = 0;
+
+        for (int currentNumber = 0; currentNumber < arr.length; currentNumber++) {
+            int currentCount = 0;
+            for (int i = position; i < arr.length; i++) {
+                if (arr[currentNumber] == arr[i]) {
+                    currentCount++;
+                } else {
+                    break;
+                }
+                position++;
+            }
+            if (currentCount > maxCount && currentCount > 1) {
+                maxCount = currentCount;
+                targetNumber = arr[currentNumber];
+            } else if (currentCount == maxCount) {
+                min = Math.min(arr[currentNumber], targetNumber);
+            }
+
+        }
+        if (min == 0) {
+            System.out.println(targetNumber);
+        } else {
+            System.out.println(min);
+        }
+
+    }
+}
